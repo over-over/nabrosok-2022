@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "paths": {
+      "@features/*": ["features/*"],
+      "@shared/*": ["shared/*"],
+      "@entities/*": ["entities/*"],
+      "@widgets/*": ["widgets/*"],
+      "@app/*": ["app/*"],
+      "@pages/*": ["pages/*"],
+      "@processes/*": ["processes/*"]
+    }
+  }
+}

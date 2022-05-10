@@ -1,3 +1,24 @@
 {
-  "extends": "next/core-web-vitals"
+  "root": true,
+  "extends": [
+    "next/core-web-vitals",
+    "plugin:prettier/recommended",
+    "plugin:import/typescript"
+  ],
+  "settings": {
+    "import/resolver": {
+      "alias": {
+        "map": [
+          ["@features", "./src/features"],
+          ["@shared", "./src/shared"],
+          ["@entities", "./src/entities"],
+          ["@app", "./src/app"],
+          ["@pages", "./src/pages"],
+          ["@widgets", "./src/widgets"],
+          ["@processes", "./src/processes"]
+        ],
+        "extensions": [".ts", ".js", ".jsx", ".tsx", ".json"]
+      }
+    }
+  }
 }
