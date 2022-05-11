@@ -1,45 +1,12 @@
-import { writeFileSync } from 'fs';
+import { writeFileSync, existsSync } from 'fs';
 import { join } from 'path';
 
 import data from '../../data/spreadsheet.json';
+import { TArtistDetails, TWorkDetails } from '../../src/shared/lib';
 
 const ARTISTS_OUTPUT_PATH = join(__dirname, '../../data/artists.json');
 const WORKS_OUTPUT_PATH = join(__dirname, '../../data/works.json');
-
-type TAuctionData = {
-  price: string;
-  link: string;
-};
-
-type TWorkDetails = {
-  id: string;
-  artistId: string;
-  name: string;
-  photo?: TSpreadsheetImage;
-  technique?: string;
-  year?: string;
-  description?: string;
-  size?: string;
-  auction?: TAuctionData;
-};
-
-type TSpreadsheetImage = {
-  localURI: string;
-  externalURI: string;
-};
-
-type TArtistDetails = {
-  id: string;
-  name: string;
-  style: string;
-  biography?: string;
-  birthDate?: string;
-  photo?: TSpreadsheetImage;
-  email?: string;
-  vk?: string;
-  telegram?: string;
-  works: TWorkDetails[];
-};
+const PUBLIC_FOLDER = join(__dirname, '../../public');
 
 type TArtistData = Record<number, TArtistDetails>;
 
@@ -66,10 +33,14 @@ const getArtistData = () => {
         };
       }
       if (workIndex % 8 === 1) {
+        const localPhoto = `/images/works/work-${globalWorkId}.jpg`;
+        const localURI = existsSync(PUBLIC_FOLDER + localPhoto)
+          ? localPhoto
+          : '';
         workDetails[globalWorkId].photo = works[workIndex]?.v
           ? {
               externalURI: String(works[workIndex].v),
-              localURI: '',
+              localURI,
             }
           : undefined;
       }
@@ -103,6 +74,9 @@ const getArtistData = () => {
       }
     }
 
+    const localPhoto = `/images/artists/artist-${index}.jpg`;
+    const localURI = existsSync(PUBLIC_FOLDER + localPhoto) ? localPhoto : '';
+
     result[index] = {
       id: String(index),
       name: values.c[1]?.v ? String(values.c[1].v) : undefined,
@@ -114,7 +88,7 @@ const getArtistData = () => {
       photo: values.c[5]?.v
         ? {
             externalURI: String(values.c[5].v),
-            localURI: '',
+            localURI,
           }
         : undefined,
       email: values.c[6]?.v ? String(values.c[6].v) : undefined,

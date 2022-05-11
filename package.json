@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "sheet:get": "yarn ts-node -T -P node.tsconfig.json scripts/spreadsheet-data/fetch-spreadsheet-data.ts",
-    "sheet:artists": "yarn ts-node -T -P node.tsconfig.json scripts/spreadsheet-data/format-artist-data.ts"
+    "sheet:artists": "yarn ts-node -T -P node.tsconfig.json scripts/spreadsheet-data/format-artist-data.ts",
+    "sheet:images": "yarn ts-node -T -P node.tsconfig.json scripts/spreadsheet-data/fetch-images.ts"
   },
   "dependencies": {
     "next": "12.1.6",
