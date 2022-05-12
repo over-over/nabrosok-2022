@@ -7,6 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "static": "next build && next export -o docs && touch ./docs/.nojekyll",
     "sheet:get": "yarn ts-node -T -P node.tsconfig.json scripts/spreadsheet-data/fetch-spreadsheet-data.ts",
     "sheet:artists": "yarn ts-node -T -P node.tsconfig.json scripts/spreadsheet-data/format-artist-data.ts",
     "sheet:images": "yarn ts-node -T -P node.tsconfig.json scripts/spreadsheet-data/fetch-images.ts"
