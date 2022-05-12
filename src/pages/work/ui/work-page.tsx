@@ -16,6 +16,9 @@ const Content = styled.section`
   background-color: ${({ theme }) => theme.palette.background.primary};
 `;
 
+const IMAGE_PREFIX =
+  process.env.NODE_ENV === 'production' ? '/nabrosok-2022/' : '';
+
 type Props = {
   workData: TWorkDetails;
 };
@@ -26,7 +29,7 @@ export const WorkPage = ({ workData }: Props) => {
       <Content>
         {workData.photo?.localURI && (
           <img
-            src={workData.photo.localURI}
+            src={IMAGE_PREFIX + workData.photo.localURI}
             alt={workData.name}
             width="512"
             height="512"

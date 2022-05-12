@@ -1,5 +1,4 @@
 import { GetStaticPaths, GetStaticProps } from 'next';
-import { useRouter } from 'next/router';
 
 import { TWorkDetails } from '@shared/lib';
 import { WorkPage } from '@pages/work';
