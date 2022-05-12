@@ -4,7 +4,7 @@ const isProd = process.env.NODE_ENV === 'production';
 const nextConfig = {
   reactStrictMode: true,
   basePath: isProd ? '/nabrosok-2022' : '',
-  // assetPrefix: '/nabrosok-2022/',
+  assetPrefix: isProd ? '/nabrosok-2022/' : '',
   compiler: {
     styledComponents: true,
   },
