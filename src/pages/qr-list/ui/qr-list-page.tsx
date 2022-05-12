@@ -3,8 +3,8 @@ import { QRCodeSVG } from 'qrcode.react';
 
 import works from '../../../../data/works.json';
 import artists from '../../../../data/artists.json';
+import artistNames from '../../../../data/artist-qr-names.json';
 import { TArtistDetails, TWorkDetails } from '@shared/lib';
-import { useState } from 'react';
 
 const Wrapper = styled.main`
   display: flex;
@@ -58,8 +58,11 @@ export const QRListPage = ({}: Props) => {
         const artistDetails = artists[
           item.artistId as keyof typeof artists
         ] as TArtistDetails;
+        const artistName =
+          artistNames[artistDetails.name as keyof typeof artistNames] ??
+          artistDetails.name;
         return (
-          <CodeCard>
+          <CodeCard key={item.id}>
             <QRCodeSVG
               value={`https://over-over.github.io/nabrosok-2022/work/${item.id}`}
               size={141}
@@ -100,7 +103,7 @@ export const QRListPage = ({}: Props) => {
                 {item.name}
               </Title>
               <InfoText>{item.year}</InfoText>
-              <InfoText>{artistDetails.name}</InfoText>
+              <InfoText>{artistName}</InfoText>
             </WorkInfo>
           </CodeCard>
         );
