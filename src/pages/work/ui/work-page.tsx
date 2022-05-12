@@ -29,7 +29,7 @@ export const WorkPage = ({ workData }: Props) => {
       <Content>
         {workData.photo?.localURI && (
           <img
-            src={workData.photo.localURI}
+            src={IMAGE_PREFIX + workData.photo.localURI}
             alt={workData.name}
             width="512"
             height="512"
