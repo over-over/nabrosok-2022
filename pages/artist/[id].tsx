@@ -1,9 +1,12 @@
 import { GetStaticPaths, GetStaticProps } from 'next';
 import { useRouter } from 'next/router';
+
+import { TArtistDetails } from '@shared/lib';
+
 import artists from '../../data/artists.json';
 
 type Props = {
-  artistData: any;
+  artistData: TArtistDetails;
 };
 
 const Artist = ({ artistData }: Props) => {
