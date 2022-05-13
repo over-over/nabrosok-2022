@@ -10,7 +10,8 @@
     "static": "next build && next export -o docs && touch ./docs/.nojekyll",
     "sheet:get": "yarn ts-node -T -P node.tsconfig.json scripts/spreadsheet-data/fetch-spreadsheet-data.ts",
     "sheet:artists": "yarn ts-node -T -P node.tsconfig.json scripts/spreadsheet-data/format-artist-data.ts",
-    "sheet:images": "yarn ts-node -T -P node.tsconfig.json scripts/spreadsheet-data/fetch-images.ts"
+    "sheet:images": "yarn ts-node -T -P node.tsconfig.json scripts/spreadsheet-data/fetch-images.ts",
+    "sheet:tg": "yarn ts-node -T -P node.tsconfig.json scripts/spreadsheet-data/post-auction-channel.ts"
   },
   "dependencies": {
     "next": "12.1.6",
