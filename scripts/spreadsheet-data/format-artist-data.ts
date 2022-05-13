@@ -36,7 +36,12 @@ const getArtistData = () => {
         }
         const brokenWork =
           worksJSON[globalWorkId as unknown as keyof typeof worksJSON];
-        if (false && brokenWork && brokenWork.name !== String(works[workIndex].v)) {
+        // change sometimes
+        if (
+          true &&
+          brokenWork &&
+          brokenWork.name !== String(works[workIndex].v)
+        ) {
           // console.log(
           //   String(works[workIndex].v),
           //   String(works[workIndex + 7].v),
@@ -54,30 +59,30 @@ const getArtistData = () => {
           const localURI = existsSync(PUBLIC_FOLDER + localPhoto)
             ? localPhoto
             : '';
-          workDetails[brokenGlobalWorkId].photo = works[workIndex+1]?.v
+          workDetails[brokenGlobalWorkId].photo = works[workIndex + 1]?.v
             ? {
-                externalURI: String(works[workIndex+1].v),
+                externalURI: String(works[workIndex + 1].v),
                 localURI,
               }
             : undefined;
-          workDetails[brokenGlobalWorkId].technique = works[workIndex+2]?.v
-            ? String(works[workIndex+2].v)
+          workDetails[brokenGlobalWorkId].technique = works[workIndex + 2]?.v
+            ? String(works[workIndex + 2].v)
             : undefined;
 
-          workDetails[brokenGlobalWorkId].year = works[workIndex+3]?.f
-            ? String(works[workIndex+3].f)
+          workDetails[brokenGlobalWorkId].year = works[workIndex + 3]?.f
+            ? String(works[workIndex + 3].f)
             : undefined;
 
-          workDetails[brokenGlobalWorkId].description = works[workIndex+4]?.v
-            ? String(works[workIndex+4].v)
+          workDetails[brokenGlobalWorkId].description = works[workIndex + 4]?.v
+            ? String(works[workIndex + 4].v)
             : undefined;
 
-          workDetails[brokenGlobalWorkId].size = works[workIndex+4]?.v
-            ? String(works[workIndex+4].v)
+          workDetails[brokenGlobalWorkId].size = works[workIndex + 4]?.v
+            ? String(works[workIndex + 4].v)
             : undefined;
 
-          workDetails[brokenGlobalWorkId].auction = works[workIndex+4]?.f
-            ? { price: works[workIndex+4].f, link: '' }
+          workDetails[brokenGlobalWorkId].auction = works[workIndex + 4]?.f
+            ? { price: works[workIndex + 4].f, link: '' }
             : undefined;
 
           break;
