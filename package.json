@@ -15,19 +15,24 @@
     "sheet:size": "yarn ts-node -T -P node.tsconfig.json scripts/spreadsheet-data/resize-images.ts"
   },
   "dependencies": {
+    "aframe": "^1.3.0",
+    "mind-ar": "^1.1.4",
     "next": "12.1.6",
     "qrcode.react": "^3.0.1",
     "react": "18.1.0",
     "react-dom": "18.1.0",
     "styled-components": "^5.3.5",
-    "styled-system": "^5.1.5"
+    "styled-system": "^5.1.5",
+    "three": "^0.140.2"
   },
   "devDependencies": {
+    "@types/aframe": "^1.2.0",
     "@types/node": "^17.0.31",
     "@types/react": "18.0.9",
     "@types/react-dom": "18.0.3",
     "@types/sharp": "^0.30.2",
     "@types/styled-components": "^5.1.25",
+    "@types/three": "^0.140.0",
     "eslint": "8.15.0",
     "eslint-config-next": "12.1.6",
     "sharp": "^0.30.4",
