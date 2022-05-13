@@ -49,7 +49,6 @@ const sendBotMessage = async (id: string): Promise<object> => {
   if (selectedWork) {
     const messageParams = getWorkInfoParams(selectedWork);
     if (!messageParams) {
-      console.log("Can't create params for request");
       return;
     }
     const messageMarkup = getWorkInfo(messageParams);
@@ -61,7 +60,9 @@ const sendBotMessage = async (id: string): Promise<object> => {
       );
 
       if (result.status !== 200) {
-        throw new Error(`Wrong status: ${result.status}, ${result.statusText}`);
+        // throw new Error(
+        //   `Wrong status: ${id}, ${result.status}, ${result.statusText}`,
+        // );
       }
 
       const body = await result.json();
