@@ -11,6 +11,27 @@ const OUTPUT_PATH = join(__dirname, '../../data/telegram-lots.json');
 const BOT_KEY = '5311692781:AAF0obyeYPivxfA1IqrCuR45RF2w0TXAYY0';
 const TARGET_CHANNEL = '-1001751172226';
 
+// https://ibb.co/q1mPvpj
+// https://ibb.co/rbVjZ0t
+// https://ibb.co/YfMw7wn
+// https://ibb.co/VNCRdL7
+// https://ibb.co/Cb1RF6j
+// https://ibb.co/1JbdDLX
+// https://ibb.co/Rbkr9dX
+// https://ibb.co/RYWrB8z
+// Because telegram cant add photos for github pages
+
+const TEMP_IMAGES = {
+  '13': 'https://i.ibb.co/nkQ5Fjm/work-13.jpg',
+  '25': 'https://i.ibb.co/KNJP9hG/work-25.jpg',
+  '26': 'https://i.ibb.co/QYRtFtS/work-26.jpg',
+  '27': 'https://i.ibb.co/wLQVTd9/work-27.jpg',
+  '28': 'https://i.ibb.co/9b8Qjhx/work-28.jpg',
+  '29': 'https://i.ibb.co/Fqn0SKY/work-29.jpg',
+  '30': 'https://i.ibb.co/9gkKNSx/work-30.jpg',
+  '31': 'https://i.ibb.co/TY5jbym/work-31.jpg',
+};
+
 type TWorkInfoParams = {
   name: string;
   author: string;
@@ -36,7 +57,9 @@ const getWorkInfoParams = (work: TWorkDetails): TWorkInfoParams | undefined => {
       name: work.name,
       author: authorDetails.name,
       initialPrice: work.auction.price,
-      imageURI: `https://over-over.github.io/nabrosok-2022//images/works/work-${work.id}.jpg`,
+      imageURI:
+        TEMP_IMAGES[work.id] ??
+        `https://over-over.github.io/nabrosok-2022//images/works/work-${work.id}.jpg`,
       infoURI: `https://over-over.github.io/nabrosok-2022/work/${work.id}`,
       size: work.size,
     };
