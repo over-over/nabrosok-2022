@@ -1,4 +1,5 @@
 import { GetStaticPaths, GetStaticProps } from 'next';
+import Head from 'next/head';
 
 import { TArtistDetails } from '@shared/lib';
 import { ArtistPage } from '@pages/artist';
@@ -10,7 +11,14 @@ type Props = {
 };
 
 const Artist = ({ artistData }: Props) => {
-  return <ArtistPage artistData={artistData} />;
+  return (
+    <>
+      <Head>
+        <title>{artistData.name}</title>
+      </Head>
+      <ArtistPage artistData={artistData} />
+    </>
+  );
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {

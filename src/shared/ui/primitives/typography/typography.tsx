@@ -1,6 +1,6 @@
 import { HTMLAttributes, ReactNode } from 'react';
-import styled, { css, TypographyVariant } from 'styled-components';
-import { space, SpaceProps } from 'styled-system';
+import styled, { TypographyVariant } from 'styled-components';
+import { space, typography, TypographyProps, SpaceProps } from 'styled-system';
 
 const tagTypographyMap: Record<TypographyVariant, string> = {
   h1: 'h1',
@@ -20,6 +20,7 @@ const tagTypographyMap: Record<TypographyVariant, string> = {
 
 const Text = styled.p<{ $variant: TypographyVariant }>`
   ${space}
+  ${typography}
   font-family: ${({ theme, $variant }) =>
     theme.typography[$variant].fontFamily};
   font-weight: ${({ theme, $variant }) =>
@@ -33,6 +34,7 @@ const Text = styled.p<{ $variant: TypographyVariant }>`
 `;
 
 type Props = { variant?: TypographyVariant; children: ReactNode } & SpaceProps &
+  TypographyProps &
   HTMLAttributes<HTMLParagraphElement>;
 
 export const Typography = ({ variant = 'body2', ...rest }: Props) => {

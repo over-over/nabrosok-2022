@@ -1,4 +1,5 @@
 import { GetStaticPaths, GetStaticProps } from 'next';
+import Head from 'next/head';
 
 import { TArtistDetails, TWorkDetails } from '@shared/lib';
 import { WorkPage } from '@pages/work';
@@ -15,11 +16,16 @@ type Props = {
 
 const Work = ({ workData, artistData, auctionLink }: Props) => {
   return (
-    <WorkPage
-      artistData={artistData}
-      workData={workData}
-      auctionLink={auctionLink}
-    />
+    <>
+      <Head>
+        <title>{workData.name}</title>
+      </Head>
+      <WorkPage
+        artistData={artistData}
+        workData={workData}
+        auctionLink={auctionLink}
+      />
+    </>
   );
 };
 
