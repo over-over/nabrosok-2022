@@ -12,7 +12,8 @@
     "sheet:artists": "yarn ts-node -T -P node.tsconfig.json scripts/spreadsheet-data/format-artist-data.ts",
     "sheet:images": "yarn ts-node -T -P node.tsconfig.json scripts/spreadsheet-data/fetch-images.ts",
     "sheet:tg": "yarn ts-node -T -P node.tsconfig.json scripts/spreadsheet-data/post-auction-channel.ts",
-    "sheet:size": "yarn ts-node -T -P node.tsconfig.json scripts/spreadsheet-data/resize-images.ts"
+    "sheet:size": "yarn ts-node -T -P node.tsconfig.json scripts/spreadsheet-data/resize-images.ts",
+    "sheet:price": "yarn ts-node -T -P node.tsconfig.json scripts/spreadsheet-data/update-prices.ts"
   },
   "dependencies": {
     "next": "12.1.6",

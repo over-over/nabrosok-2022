@@ -77,12 +77,12 @@ const getArtistData = () => {
             ? String(works[workIndex + 4].v)
             : undefined;
 
-          workDetails[brokenGlobalWorkId].size = works[workIndex + 4]?.v
-            ? String(works[workIndex + 4].v)
+          workDetails[brokenGlobalWorkId].size = works[workIndex + 5]?.v
+            ? String(works[workIndex + 5].v)
             : undefined;
 
-          workDetails[brokenGlobalWorkId].auction = works[workIndex + 4]?.f
-            ? { price: works[workIndex + 4].f, link: '' }
+          workDetails[brokenGlobalWorkId].auction = works[workIndex + 6]?.f
+            ? { price: works[workIndex + 6].f, link: '' }
             : undefined;
 
           break;
