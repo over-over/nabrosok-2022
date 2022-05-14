@@ -1,7 +1,7 @@
 import { GetStaticPaths, GetStaticProps } from 'next';
-import { useRouter } from 'next/router';
 
 import { TArtistDetails } from '@shared/lib';
+import { ArtistPage } from '@pages/artist';
 
 import artists from '../../data/artists.json';
 
@@ -10,17 +10,7 @@ type Props = {
 };
 
 const Artist = ({ artistData }: Props) => {
-  const router = useRouter();
-  const { id } = router.query;
-  console.log(router);
-
-  return (
-    <>
-      <p>Artist: {JSON.stringify(router)}</p>
-      <p>Router: {id}</p>
-      <p>ID: {JSON.stringify(artistData)}</p>
-    </>
-  );
+  return <ArtistPage artistData={artistData} />;
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {

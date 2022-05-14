@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 
-import { TArtistDetails, TWorkDetails } from '@shared/lib';
+import { TArtistDetails } from '@shared/lib';
 import { Typography } from '@shared/ui/primitives';
-import { Box, Button, IconTelegram } from '@shared/ui';
-import { AuthorAbout } from '@shared/ui/molecules';
+import { Contacts } from '@shared/ui/molecules';
+import { Box } from '@shared/ui';
 
 const Wrapper = styled.main`
   width: 100%;
@@ -41,7 +41,7 @@ const SummaryInfo = styled.summary`
     width: 50%;
   }
 `;
-const WorkTitle = styled(Typography)`
+const MainTitle = styled(Typography)`
   padding: 4px 12px;
   background-color: ${({ theme }) => theme.palette.secondary.dark};
   color: ${({ theme }) => theme.palette.secondary.contrastText};
@@ -68,89 +68,76 @@ const InfoItem = styled.li`
     border-right: none;
   }
 `;
-const AuctionLink = styled(Button)`
-  display: flex;
-  width: 100%;
-  text-decoration: none;
-  text-align: left;
-  flex-direction: row;
-  align-items: center;
-  margin-bottom: 16px;
-
-  & > span {
-    padding-right: 12px;
-  }
-`;
 
 const IMAGE_PREFIX =
   process.env.NODE_ENV === 'production' ? '/nabrosok-2022/' : '';
 
 type Props = {
-  workData: TWorkDetails;
   artistData: TArtistDetails;
-  auctionLink?: string;
 };
 
-export const WorkPage = ({ workData, artistData, auctionLink }: Props) => {
+export const ArtistPage = ({ artistData }: Props) => {
+  const age = artistData.birthDate
+    ? new Date().getFullYear() - new Date(artistData.birthDate).getFullYear()
+    : undefined;
+  const hasAnyContact =
+    artistData.telegram || artistData.vk || artistData.email;
   return (
     <Wrapper>
       <Content>
-        {workData.photo?.localURI && (
+        {artistData.photo?.localURI && (
           <WorkImage
-            src={IMAGE_PREFIX + workData.photo.localURI}
-            alt={workData.name}
+            src={IMAGE_PREFIX + artistData.photo.localURI}
+            alt={artistData.name}
           />
         )}
         <SummaryInfo>
-          <AuthorAbout
-            link={`/artist/${artistData.id}`}
-            imageURI={
-              artistData?.photo?.localURI
-                ? IMAGE_PREFIX + artistData.photo.localURI
-                : undefined
-            }
-            name={artistData.name}
-            description={artistData.biography}
-          />
-          <WorkTitle mt={3} mb={3} variant="h4">
-            {workData.name}
-          </WorkTitle>
-          {auctionLink && (
-            <AuctionLink as="a" href={auctionLink}>
-              <span>Данная работа выставлена на аукцион</span>
-              <IconTelegram size={48} />
-            </AuctionLink>
-          )}
+          <MainTitle mb={3} variant="h4">
+            {artistData.name}
+          </MainTitle>
           <InfoWrapper>
-            {workData.technique && (
+            {artistData.style && (
               <InfoItem>
                 <Typography variant="subtitle2" mb={1}>
-                  Техника:
+                  Жанр:
                 </Typography>
-                <Typography>{workData.technique}</Typography>
+                <Typography>{artistData.style}</Typography>
               </InfoItem>
             )}
-            {workData.size && (
+            {(age && age < 50) ? (
               <InfoItem>
                 <Typography variant="subtitle2" mb={1}>
-                  Размер:
+                  Возраст:
                 </Typography>
-                <Typography>{workData.size}</Typography>
-              </InfoItem>
-            )}
-            {workData.year && (
-              <InfoItem>
-                <Typography variant="subtitle2" mb={1}>
-                  Год:
+                <Typography>
+                  {age.toLocaleString('ru', {
+                    style: 'unit',
+                    unit: 'year',
+                    unitDisplay: 'long',
+                  })}
                 </Typography>
-                <Typography>{workData.year}</Typography>
               </InfoItem>
-            )}
+            ) : null}
           </InfoWrapper>
-          {workData.description && (
+          {artistData.biography && (
             <Typography variant="body2" mt={4} px={2}>
-              {workData.description}
+              {artistData.biography}
             </Typography>
+          )}
+          {hasAnyContact && (
+            <Box mt={4} px={1}>
+              <Contacts
+                email={
+                  artistData.email ? `mailto:${artistData.email}` : undefined
+                }
+                vk={artistData.vk}
+                telegram={
+                  artistData.telegram
+                    ? `https://t.me/${artistData.telegram.slice(1)}`
+                    : undefined
+                }
+              />
+            </Box>
           )}
         </SummaryInfo>
       </Content>
