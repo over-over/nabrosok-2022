@@ -2,6 +2,8 @@ import styled from 'styled-components';
 
 import { TArtistDetails, TWorkDetails } from '@shared/lib';
 import { Typography } from '@shared/ui/primitives';
+import { Box } from '@shared/ui';
+import { AuthorAbout } from '@shared/ui/molecules';
 
 const Wrapper = styled.main`
   width: 100%;
@@ -19,7 +21,7 @@ const Wrapper = styled.main`
 `;
 const Content = styled.section`
   padding: 8px;
-  padding-bottom: 48px;
+  padding-bottom: 52px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -86,10 +88,17 @@ export const WorkPage = ({ workData, artistData }: Props) => {
           />
         )}
         <SummaryInfo>
-          <WorkTitle px={1} variant="subtitle1">
-            {artistData.name}
-          </WorkTitle>
-          <WorkTitle mt={2} mb={4} variant="h4">
+          <AuthorAbout
+            link={`/artist/${artistData.id}`}
+            imageURI={
+              artistData?.photo?.localURI
+                ? IMAGE_PREFIX + artistData.photo.localURI
+                : undefined
+            }
+            name={artistData.name}
+            description={artistData.biography}
+          />
+          <WorkTitle mt={3} mb={4} variant="h4">
             {workData.name}
           </WorkTitle>
           <InfoWrapper>
