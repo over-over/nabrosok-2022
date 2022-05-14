@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 import { TArtistDetails, TWorkDetails } from '@shared/lib';
 import { Typography } from '@shared/ui/primitives';
-import { Box } from '@shared/ui';
+import { Box, Button, IconTelegram } from '@shared/ui';
 import { AuthorAbout } from '@shared/ui/molecules';
 
 const Wrapper = styled.main`
@@ -68,6 +68,19 @@ const InfoItem = styled.li`
     border-right: none;
   }
 `;
+const AuctionLink = styled(Button)`
+  display: flex;
+  width: 100%;
+  text-decoration: none;
+  text-align: left;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 16px;
+
+  & > span {
+    padding-right: 12px;
+  }
+`;
 
 const IMAGE_PREFIX =
   process.env.NODE_ENV === 'production' ? '/nabrosok-2022/' : '';
@@ -75,9 +88,10 @@ const IMAGE_PREFIX =
 type Props = {
   workData: TWorkDetails;
   artistData: TArtistDetails;
+  auctionLink?: string;
 };
 
-export const WorkPage = ({ workData, artistData }: Props) => {
+export const WorkPage = ({ workData, artistData, auctionLink }: Props) => {
   return (
     <Wrapper>
       <Content>
@@ -98,9 +112,15 @@ export const WorkPage = ({ workData, artistData }: Props) => {
             name={artistData.name}
             description={artistData.biography}
           />
-          <WorkTitle mt={3} mb={4} variant="h4">
+          <WorkTitle mt={3} mb={3} variant="h4">
             {workData.name}
           </WorkTitle>
+          {auctionLink && (
+            <AuctionLink as="a" href={auctionLink}>
+              <span>Данная работа выставлена на аукцион</span>
+              <IconTelegram size={48} />
+            </AuctionLink>
+          )}
           <InfoWrapper>
             {workData.technique && (
               <InfoItem>
