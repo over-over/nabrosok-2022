@@ -104,7 +104,7 @@ export const ArtistPage = ({ artistData }: Props) => {
                 <Typography>{artistData.style}</Typography>
               </InfoItem>
             )}
-            {(age && age < 50) ? (
+            {age && age < 50 ? (
               <InfoItem>
                 <Typography variant="subtitle2" mb={1}>
                   Возраст:
