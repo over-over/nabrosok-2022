@@ -31,6 +31,11 @@ class MyDocument extends Document {
             sizes="16x16"
             href="/favicon-16x16.png"
           />
+          <link
+            rel="shortcut icon"
+            type="image/x-icon"
+            href="/favicon.ico?"
+          ></link>
           <link rel="manifest" href="/site.webmanifest" />
           <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#c6a700" />
           <meta name="msapplication-TileColor" content="#ffc40d" />
